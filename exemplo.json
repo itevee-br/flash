@@ -1,0 +1,36 @@
+{
+  "tema": "História do Brasil",
+  "perguntas": [
+    {
+      "pergunta": "Em que ano ocorreu a Proclamação da República?",
+      "resposta": "1889",
+      "explicacao": "Foi em 15 de novembro de 1889."
+    },
+    {
+      "pergunta": "Quem foi o primeiro presidente do Brasil?",
+      "resposta": "Deodoro da Fonseca",
+      "explicacao": "Assumiu após a proclamação da República."
+    }
+  ]
+}
+
+async function initializeApplication() {
+  try {
+    const supabaseUrl = 'https://ectzevuwedhdjbbzphos.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjdHpldnV3ZWRoZGpiYnpwaG9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2MDU5MzAsImV4cCI6MjA2ODE4MTkzMH0.b_85saKTZC85UDXDYC5xVZL7tKhNOTEVedBP5S0POHw';
+    window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const { data, error } = await supabase
+      .from('flashcards')
+      .select('*')
+      .limit(1);
+
+    if (error) throw error;
+
+    console.log('Conexão com Supabase estabelecida com sucesso!');
+    setupEventListeners(supabase);
+  } catch (error) {
+    console.error('Erro durante a inicialização:', error);
+    showErrorToUser('Erro ao conectar com o banco de dados.');
+  }
+}

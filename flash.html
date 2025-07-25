@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards App 2</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Flashcards App 3</h1>
+
+    <div class="menu">
+      <button id="addBtn">Adicionar Flashcard</button>
+      <button id="importBtn">Importar JSON</button>
+      <input type="file" id="jsonInput" accept=".json" class="hidden" />
+      
+      <button id="randomBtn">Ver Aleatório</button>
+      <button id="themeBtn">Ver por Tema</button>
+    </div>
+
+    <div id="addForm" class="form-container hidden">
+      <h2>Novo Flashcard</h2>
+      <form id="flashcardForm">
+        <div class="form-group">
+          <label for="tema">Tema:</label>
+          <input type="text" id="tema" required />
+        </div>
+        <div class="form-group">
+          <label for="pergunta">Pergunta:</label>
+          <textarea id="pergunta" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="resposta">Resposta:</label>
+          <textarea id="resposta" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="explicacao">Explicação (opcional):</label>
+          <textarea id="explicacao"></textarea>
+        </div>
+        <button type="submit">Salvar</button>
+        <button type="button" id="cancelAdd">Cancelar</button>
+      </form>
+    </div>
+
+    <div id="themeForm" class="form-container hidden">
+      <h2>Selecionar Tema</h2>
+      <div class="form-group">
+        <label for="temaSelect">Tema:</label>
+        <select id="temaSelect"></select>
+        <button id="loadTheme">Carregar</button>
+        <button id="cancelTheme">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="flashcardView" class="hidden">
+      <div class="flashcard">
+        <div class="card-content" id="cardContent"></div>
+        <div class="card-actions">
+          <button id="showAnswer">Mostrar Resposta</button>
+          <button id="showExplanation" class="hidden">Mostrar Explicação</button>
+          <div id="answerButtons" class="hidden">
+            <button id="btnAcertou">Acertei</button>
+            <button id="btnErrou">Errei</button>
+          </div>
+          <button id="nextCard" class="hidden">Próximo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

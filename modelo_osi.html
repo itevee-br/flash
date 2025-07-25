@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelo Osi</title>
+  <link rel="stylesheet" href="resumo.css">
+</head>
+<body>
+  <p><b>.......................................................MODELO OSI.............................................</b></p>
+  <img src="img/sans-scary.gif">
+    <hr>
+    <h1>Camada 1 - Fisisca</h1>
+    <p>unidade: Bits</p>
+    <hr>
+  <p>ela é a responsavel por transmitir os 0/1 entre os dispositivos atraves do meio fisico</p>
+  <p>nela que existe as <b>topologias de rede</b>.</p>
+  <p>define caracteristicas FISICAS dos meios de transmissão</p>
+  <p>Ela não se importa com nada apenas transmite a sequencia de numeros adiante.</p>
+  <p>unidade de dados são <b>bits</b>.</p>
+  <h2>Meios de transmissão</h2>
+  <p>- Cabos UTP (par trançado sem blindagem)</p>
+  <p>- Cabos coaxial (o grosso)</p>
+  <p>- Cabos de fibra opitica (transmissão por luz)</p>
+  <h2>Sinais</h2>
+  <p>- Eletricos, opiticos, radio (wireless)</p>
+  <h2>Equipamentos da camada Fisica</h2>
+  <h3>- Repetidores</h3>
+  <p>Que nem o minecraft.</p>
+  <h3>- Hubs</h3>
+  <p>Ao receber uma mensagem compartilha para todos os dispositivos conectados.</p>
+  <p>O seu uso esta obsoleto pois não tem segurança nenhuma pois</p>
+  <p>Grita para todo mundo na esperança do ouvinte ouvir.</p>
+  <h3>- Modem fisico</h3>
+  <p>Converte sinal analogico em digital e vice versa.</p>
+  <p>Usado na conexão a internet, geralmente integrado ao roteador.</p>
+    <hr>
+    <h1>Camada 2 - ENLACE</h1>
+    <p>unidade: quadros(frames)</p>
+    <hr>
+  <p>Essa camada serve para detectar erros que ocorrem na camada fisica.</p>
+  <p>ela é um intermediario entre a camda <b>Fisica</b> e a de <b>Rede</b>.</p>
+  <p>Sua unidade de dados são <b>quadros(frames)</b> que são os conjuntos de <b>bits</b>.</p>
+  <h2>Quadros</h2>
+  <p>[ Cabeçalho ] [ Dados úteis (Payload) ] [ FCS ]</p>
+  <h3>Cabeçalho</h3>
+  <p>Como uma etiqueta ele traz metadados como:</p>
+  <p>Endereço de origem: Mac do remetente</p>
+  <p>Endereço de destino: Mac do receptor</p>
+  <p>Tipo de protocolo: usado na camada superiro tipo IPv4 ou IPv6</p>
+  <p>Controle de sequencia: caso a transmissão precise ser ordenada</p>
+  <h3>FCS</h3>
+  <p>É a sequencia de verificação inserida no final do quadro</p>
+  <p>Serve para detectar erros de transmissão referentes a camada fisica.</p>
+  <p>O receptor (quem ta recebendo a msg) refaz o calculo e verifica se bate com o FCS</p>
+  <p>O CALCULO É FEITO COM <b>Cyclic Redundancy Check (CRC)</b>divisão binaria e o resto vira FCS.</p>
+  <p>Se o calculo não coincidir o quadro é descartado ou solicirtado novamente.</p>
+  <h2>A camada de ENLACE se divide em duas SUB-camadas</h2>
+  <h3>LLC Logical Link Control</h3>
+  <p>- interface logica com a camada da rede</p>
+  <p>- identifica o protocolo tipo IPv4, IPv6</p>
+  <p>- fala para o MAC qual protocolo esta sendo usado na camada 3</p>
+  <p>- pode ajudar no controle de fluxo. nem sempre. nem é sua função. so pode. tranmissor não sobrecarregar o receptor com dados.</p>
+  <h3>MAC Media Access Control</h3>
+  <p>- Define como os dispositivos acessam o meio Endereço MAC</p>
+  <p>- Monta quadros, adiciona o Cabeçalho calcula e inseri o FCS</p>
+  <p>- A camada basicamente direciona o "mac unico" de todos os dispositivos na rede</p>
+  <h2>Equipamentos da camada de ENLACE</h2>
+  <h3>Switches</h3>
+  <p>- usam o Endereço mac para mandar a mensagem diretamente ao destinatario</p>
+  <p>- é inteligente, não grita a msg pra todo mundo apenas pro destino.</p>
+  <p>- o Hub burro que faz isso. (hub não é dessa camada)</p>
+  <h3>Placa de rede</h3>
+  <p>- conecta o dispostivo a rede. (todos os destinos TEM)</p>
+  <p>- traduz dados digitais do computador em sinais eletricos opticos ou de radio</p>
+  <p>- possui um endereço mac unico, usado na identificação fisica na rede.</p>
+  <p>- tipos de placa: Ethernet(cabo), Wi-Fi(sem fio), USB, PCI/PCIe</p>
+  <h4>VLANs (n é equipamento pq é logico n é real)</h4>
+  <p>- São configuradas por Switches. basicamente "redes lógicas"(n fisicas)</p>
+  <p>- isolam grupos de dispositivos como se estivessem em redes diferentes</p>
+  <p>- Ela utiliza o endereço MAC dos dispositivos e adiciona uma tag VLAN no quadro Ethernet (não no pacote IP)</p>
+  <h3>Bridges (Pontes de rede)</h3>
+  <p>- interliga dois segmentos de rede, permitindo que funcionem como uma rede so.</p>
+  <p>- Geralmente conectada entre Switches.</p>
+  <p>- Aprende os caminhos MAC disponiveis e se tiver manda a msg para la (geralmente para um switche)</p>
+    <hr>
+    <h1>Camada 3 - REDE</h1>
+    <p>unidade: pacotes(Packets)</p>
+    <hr>
+  <p>Ela cuida do endereçamento lógico, roteamento, e garante que os dados cheguem ao destino, mesmo que estejam em redes diferentes.</p>
+  <p>- encaminha pacotes entre dispositivos em redes diferentes</p>
+  <p>- escolhe a melhor rota para os dados</p>
+  <p>- realiza o endereçamento lógico (IP)</p>
+  <p>- gerencia o congenstionamento, a fragmentação e o controle de tráfego</p>
+  <p>- enquanto a camada de ENLANCE trabalha com <b>quadros(frames)</b>a camada de rede organiza os dados em <b>PACOTES</b></p>
+  <h2>PACOTEs</h2>
+  <p>Endereço IP de origem / Endereço IP de destino / informações de controle (tempo de vida, protocolo, etc)</p>
+  <h2>Endereços IP</h2>
+  <p>- Essa camada utiliza endereços IP em vez de MAC</p>
+  <p>- Permite que dispositivos se comuniquem entre redes distintas</p>
+  <p>- IPv4 -> 192.168.0.1 IPv6 -> 2001:db8::1</p>
+  <p>- enquanto o endereço mac é o "numero da porta da casa" o IP é o "CEP DA CIDADE" mais abrangente e roteável.</p>
+  <h2>Roteamento</h2>
+  <p>- escolhe o melhor caminho entre origem e destino, feito por dispositivos chamados <b>roteadores</b></p>
+  <p>- <b>Roteamento estatico</b>: feito manualmente pelo administrador.</p>
+  <p>- <b>Roteamento dinamico</b>: baseado em protocolos que escolhem a rota automaticamente</p>
+  <p>-  Com os protocolos é melhor pois a rede pode mudar o caminho se tiver erros.</p>
+  <h2>Protocolos de roteamento</h2>
+  <p>(INFELIZMENTE É IMPORTANTE CAIU NA QUESTÃO DE ANALISTA DA FAURGS)</p>
+  <table border="1">
+    <tr>
+      <th>Protocolo</th>
+      <th>Algoritmo</th>
+      <th>Baseado em...</th>
+      <th>Características Principais</th>
+    </tr>
+    <tr>
+      <td>RIP (Routing Information Protocol)</td>
+      <td>Vetor de Distância</td>
+      <td>Número de saltos - vizinho conta caminho</td>
+      <td>Simples, até 15 saltos, convergência lenta, usa UDP</td>
+    </tr>
+    <tr>
+      <td>OSPF (Open Shortest Path First)</td>
+      <td>Estado de Ligação</td>
+      <td>Custo dos links - calcula com base no mapa individual total da rede / gps propio</td>
+      <td>Rápido, usa algoritmo de Dijkstra, escalável para redes grandes</td>
+    </tr>
+    <tr>
+      <td>EIGRP (Cisco)</td>
+      <td>Híbrido</td>
+      <td>Métrica composta (largura de banda, atraso, etc.)</td>
+      <td>Combina distância e estado, rápido, exclusivo da Cisco</td>
+    </tr>
+    <tr>
+      <td>BGP (Border Gateway Protocol)</td>
+      <td>Vetor de Caminho</td>
+      <td>Lista de sistemas autônomos - caminho passo a passo</td>
+      <td>Usado na Internet, altamente escalável, baseado em políticas</td>
+    </tr>
+    <tr>
+      <td>IS-IS</td>
+      <td>Estado de Ligação</td>
+      <td>Custo dos links - calcula com base no mapa individual total da rede</td>
+      <td>Similar ao OSPF, robusto, usado por operadoras em redes grandes</td>
+    </tr>
+  </table>
+  <h2>Fragmentação de pacotes</h2>
+  <p>- Se o pacote é muito grande para a rede de destino ela pode ser quebrada em partes.</p>
+  <p>- cada parte chega separadamente e é agrupada no destino (host)</p>
+  <p>- tambem ocorre se for muito grande para o proximo <b>enlace</b> (transmissão fisica, cabo ou ponto entre dois roteadores)</p>
+  <p>- muito utilizada principalmente no protocolo IPv4, quem "quebra" são os <b>roteadores</b></p>
+  <p>- <b>MTU</b> (Maximum Tranmission Unit) é o tamanho maximo que um quadro ou pacote pode ser transmitido sem ser fragmentado.</p>
+  <p>- cada enlace fisico tem seu propio MTU, e o roteador consulta o do seguinte para decidir se fragmenta ou não.</p>
+  <h2>Protoclos comuns da camada de REDE</h2>
+  <table border="1">
+    <tr>
+      <th>Protocolo</th>
+      <th>Função</th>
+    </tr>
+    <tr>
+      <td><b>IP</b> (Internet Protocol)</td>
+      <td>Endereçamento e roteamento entre redes</td>
+    </tr>
+    <tr>
+      <td><b>ICMP</b> (Internet Control Message Protocol)</td>
+      <td>Diagnóstico de rede e mensagens de erro (ex: ping)</td>
+    </tr>
+    <tr>
+      <td><b>ARP</b> (Address Resolution Protocol)</td>
+      <td>Traduz IP para MAC (interface entre Camadas 2 e 3)</td>
+    </tr>
+    <tr>
+      <td><b>RARP</b> (Reverse ARP)</td>
+      <td>Traduz MAC para IP (menos usado atualmente)</td>
+    </tr>
+  </table>
+  <h2>Equipamentos da camada de REDE</h2>
+  <h3>- Roteadores</h3>
+  <p>Leem o IP e decidem para onde mandar esses pacotes.</p>
+  <p>Escolhem o melhor caminho por meio de um Protocolo de Roteamento (Se for dinamico)</p>
+  <p>Tambem fazem a Fragmentação de pacotes. (so se necessario)</p>
+  <h3>- Hosts</h3>
+  <p>Qualquer dispositivo final que possui um endereço IP e participa da comunicação da rede</p>
+  <p>Fazem a reagrupação da Fragmentação feitas pelos roteadores.</p>
+  <h3>- Firewall (Camadas Lógicas em Roteadores ou Hosts)</h3>
+  <p>Um dispositivo ou software que analisa o tráfego de rede e aplica regras de segurança.</p>
+  <p>Pode estar presente tanto em roteadores (protegendo a rede inteira) quanto em hosts (protegendo o dispositivo individual).</p>
+  <p>Na camada de REDE, bloqueia IPs específicos, redes inteiras ou até protocolos (ex: bloquear tráfego IPv4).</p>
+    <hr>
+    <h1>Camada 4 - TRANSPORTE</h1>
+    <p>unidade: segmentos (tcp) / datagramas (udp)</p>
+    <hr>
+  <p>Ela garante que os dados cheguem ao destino com <b>confiabilidade</b> <i>(se não for UTP)</i>, <b>ordem</b> e <b>integridade</b>.</p>
+  <p>- segmenta e remonta os dados</p>
+  <p>- estabelece conexões fim a fim entre dispositivos</p>
+  <p>- contrala o fluxo (sem sobrecarregar o receptor)</p>
+  <p>- detecta e corrigi erros (em protocolos seguros / TPC)</p>
+  <p>- multiplexa varias aplicações simultaneas pelos numeros de porta</p>
+  <h2>Numeros de porta e multiplexação</h2>
+  <p>- São identificadores usados pela Camada de TRANSPORTE para diferenciar quais aplicações estão se comunicando em um mesmo dispositivo.</p>
+  <p>- o IP leva os dados até o dispositivo já a porta diz qual aplicativo dentro deve receber os dados.</p>
+  <p>- já a <b>multiplexação</b> permite com que varias aplicações compartilhem o mesmo IP simultaneamente, cada um com sua porta.</p>
+  <p>- Com a multiplexação posso jogar enquanto envio email e vejo um site sobre como jogar. Por exemplo: <br>Usando email -> porta 25(SMTP)<br>navegando na web -> 443(HTTPS)<br>Jogando -> porta 27015(Steam Games)</p>
+  <h2>Unidade de dados Segmento(tcp) / Datagrama(UDP)</h2>
+  <p>ao receber os dados da camada superior (Aplicação), a cammada de TRANSPORTE:</p>
+  <p>- divide em segmentos menores</p>
+  <p>- adiciona informações como porta de origem/destino, numero se sequencia (ordem que foi dividido), <b>checksum</b> (verificação de integridade de dados no nivel Lógico, como o <b>FCS</b> porem na 4 camada.)</p>
+  <p>- no destino remonta os dados na ordem certa (usando o numero de sequencia)</p>
+  <h2>confiabilidade e controle</h2>
+  <table border="1">
+    <tr>
+      <th>Recurso</th>
+      <th>Função</th>
+    </tr>
+    <tr>
+      <td>Controle de fluxo</td>
+      <td>Evita que o receptor receba mais do que pode processar</td>
+    </tr>
+    <tr>
+      <td>Controle de erro</td>
+      <td>Detecta falhas e solicita retransmissão (em protocolos confiáveis)</td>
+    </tr>
+    <tr>
+      <td>Controle de ordem</td>
+      <td>Garante que os dados cheguem na sequência correta</td>
+    </tr>
+  </table>
+  <h2>Protocolos da camada de TRANSPORTE</h2>
+  <table border="1">
+    <tr>
+      <th>Protocolo</th>
+      <th>Tipo</th>
+      <th>Características</th>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Confiável</td>
+      <td>Usa controle de sequência, confirma recebimento, retransmite se necessário</td>
+    </tr>
+    <tr>
+      <td>UDP</td>
+      <td>Não confiável</td>
+      <td>Mais rápido, não garante entrega nem ordem. Usado em vídeos, jogos, DNS</td>
+    </tr>
+  </table>
+  <p><b>A camada de transporte atua dentro dos hosts, não em equipamentos intermediários como roteadores.</b></p>
+  <h2>TCP 3way handshake</h2>
+  <p>Antes de enviar os dados o tcp realiza um aperto de mão de 3 etapas:</p>
+  <p>- <b>(SYN (Synchronize))</b> Cliente envia um pacote <b>SYN</b> ao servidor com um número de sequência aleatório (ex: SEQ=100)</p>
+  <p>- <b>(SYN-ACK (Synchronize-Acknowledge))</b> Servidor responde com <b>SYN-ACK</b> (confirma SEQ=100 e envia seu próprio SEQ=300).</p>
+  <p>- <b>(ACK (Acknowledge))</b> Cliente confirma com <b>ACK</b>=301 (próximo número esperado).</p>
+  <p>Cada pacote enviado tem um número de sequência (SEQ) e número de confirmação (ACK).</p>
+  <p>- O receptor envia um ACK confirmando o recebimento.</p>
+  <p>- Se um ACK não chegar, o TCP reenvia o pacote.</p>
+  <h2>TCP 4-Way Handshake</h2>
+  <p>- FIN (Cliente avisa que vai fechar).</p>
+  <p>- ACK (Servidor confirma).</p>
+  <p>- FIN (Servidor também fecha).</p>
+  <p>- ACK (Cliente confirma).</p>
+  <h2>estrutura do cabeçalho TCP</h2>
+  <table border="1" style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <th>Campo</th>
+    <th>Tamanho</th>
+    <th>Descrição</th>
+  </tr>
+  <tr>
+    <td>Porta de Origem</td>
+    <td>16 bits</td>
+    <td>Porta do remetente (ex: 5000)</td>
+  </tr>
+  <tr>
+    <td>Porta de Destino</td>
+    <td>16 bits</td>
+    <td>Porta do destinatário (ex: 80 para HTTP)</td>
+  </tr>
+  <tr>
+    <td>Número de Sequência (SEQ)</td>
+    <td>32 bits</td>
+    <td>Ordem dos dados (identifica o primeiro byte do segmento)</td>
+  </tr>
+  <tr>
+    <td>Número de Confirmação (ACK)</td>
+    <td>32 bits</td>
+    <td>Próximo byte esperado (válido apenas se flag ACK=1)</td>
+  </tr>
+  <tr>
+    <td>Flags</td>
+    <td>6 bits</td>
+    <td>Controle de conexão (SYN, ACK, FIN, RST, PSH, URG)</td>
+  </tr>
+  <tr>
+    <td>Janela (Window Size)</td>
+    <td>16 bits</td>
+    <td>Quantos bytes podem ser enviados sem confirmação (controle de fluxo)</td>
+  </tr>
+  <tr>
+    <td>Checksum</td>
+    <td>16 bits</td>
+    <td>Verificação de erros no cabeçalho e dados</td>
+  </tr>
+  <tr>
+    <td>Urgent Pointer</td>
+    <td>16 bits</td>
+    <td>Indica dados urgentes (se URG=1)</td>
+  </tr>
+</table>
+<p>flags do TCP</p>
+<table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <tr>
+    <th>Flag</th>
+    <th>Valor</th>
+    <th>Função</th>
+    <th>Exemplo de Uso</th>
+  </tr>
+  <tr>
+    <td>SYN</td>
+    <td>1 bit</td>
+    <td>Synchronize - Inicia uma conexão</td>
+    <td>Primeiro passo do 3-way handshake</td>
+  </tr>
+  <tr>
+    <td>ACK</td>
+    <td>1 bit</td>
+    <td>Acknowledge - Confirma recebimento</td>
+    <td>Resposta a pacotes recebidos</td>
+  </tr>
+  <tr>
+    <td>FIN</td>
+    <td>1 bit</td>
+    <td>Finish - Encerra conexão normalmente</td>
+    <td>Parte do 4-way handshake de encerramento</td>
+  </tr>
+  <tr>
+    <td>RST</td>
+    <td>1 bit</td>
+    <td>Reset - Aborta conexão abruptamente</td>
+    <td>Usado em erros ou ataques</td>
+  </tr>
+  <tr>
+    <td>PSH</td>
+    <td>1 bit</td>
+    <td>Push - Envia dados imediatamente</td>
+    <td>Evita bufferização (ex: teclado em tempo real)</td>
+  </tr>
+  <tr>
+    <td>URG</td>
+    <td>1 bit</td>
+    <td>Urgent - Dados prioritários</td>
+    <td>Pouco usado hoje (substituído por PSH)</td>
+  </tr>
+  </table>
+    <hr>
+    <h1>camada 5 - Sessão</h1>
+    <hr>
+  <p>Responsavel por <b>estabelecer</b>, <b>gerenciar</b> e <b>encerrar sessões de comunicação</b> entre dispositivos diferentes</p>
+  <p>Dela que faz com que quando o dowload trava volta de onde parou em vez de 0 por cento.</p>
+  <p>Ou a partida de um jogo online ._.</p>
+  <h2>Principais funções da camada de sessão</h2>
+  <table border="1">
+    <tr>
+      <th>Função</th>
+      <th>Explicação</th>
+    </tr>
+    <tr>
+      <td>Estabelecimento de sessão</td>
+      <td>Cria um canal lógico entre duas aplicações</td>
+    </tr>
+    <tr>
+      <td>Gerenciamento de sessão</td>
+      <td>Mantém e sincroniza a comunicação para garantir continuidade e eficiência</td>
+    </tr>
+    <tr>
+      <td>Encerramento de sessão</td>
+      <td>Finaliza a comunicação de forma ordenada, liberando recursos</td>
+    </tr>
+    <tr>
+      <td>Sincronização</td>
+      <td>Insere pontos de verificação (checkpoints) para retomar a sessão após falhas</td>
+    </tr>
+    <tr>
+      <td>Controle de diálogo</td>
+      <td>Define se a comunicação será full-duplex ou half-duplex</td>
+    </tr>
+  </table>
+  <h2>full duplex/half duplex</h2>
+  <p><b>full duplex</b>: comunicação em dois sentidos simultaneamente, como uma chamada de video</p>
+  <p><b>half duplex</b>: comunicação em um sentido por vez, como um Walkie-talkie</p>
+  <h2>Exemplo da sessão em jogo</h2>
+  <table border="1">
+    <tr>
+      <th>Função da Sessão</th>
+      <th>Analogia no Jogo</th>
+    </tr>
+    <tr>
+      <td>Estabelecimento de sessão</td>
+      <td>Criar a sala da partida: todos os jogadores conectam e entram na mesma sessão</td>
+    </tr>
+    <tr>
+      <td>Gerenciamento de sessão</td>
+      <td>Acompanhar o tempo, sincronia entre ações, manter todos na mesma fase ou rodada</td>
+    </tr>
+    <tr>
+      <td>Encerramento de sessão</td>
+      <td>Finalizar a partida e desconectar os jogadores corretamente</td>
+    </tr>
+    <tr>
+      <td>Sincronização</td>
+      <td>Salvar progresso, pontuação, estatísticas — útil para recuperar se a conexão cair</td>
+    </tr>
+    <tr>
+      <td>Controle de diálogo</td>
+      <td>Determinar se os jogadores podem falar ao mesmo tempo (chat de voz full-duplex) ou só por turnos (half-duplex)</td>
+    </tr>
+  </table>
+  <hr>
+  <h1>Camada 6 - Apresentação</h1>
+  <hr>
+  <p>Apresenta os dados em um modelo geral para a camada de aplicação.</p>
+  <p>Tipo transforma portugues em ingles que é global, para transformar em mandarim.</p>
+  <table border="1">
+    <tr>
+      <th>Função</th>
+      <th>Explicação</th>
+    </tr>
+    <tr>
+      <td>Tradução de dados</td>
+      <td>Converte formatos diferentes (ex: ASCII ⇄ Unicode, JPEG ⇄ BMP, HTML ⇄ TXT)</td>
+    </tr>
+    <tr>
+      <td>Criptografia/Segurança</td>
+      <td>Protege os dados através de criptografia e descriptografia</td>
+    </tr>
+    <tr>
+      <td>Compressão</td>
+      <td>Reduz o tamanho dos dados para agilizar transmissão (ex: ZIP, MP3)</td>
+    </tr>
+    <tr>
+      <td>Formatação</td>
+      <td>Padroniza os dados para o app entender (ex: PDFs, imagens, vídeos, textos)</td>
+    </tr>
+  </table>
+  <hr>
+  <h1>Camada 7 - Aplicação</h1>
+  <hr>
+  <p>Ela permite que softwares realizem tarefas online, traduzindo ações do usuário em comandos e protocolos da rede.</p>
+  <p>Ela não é o navegador ou o app em si, mas sim a interface que conecta esses programas na rede.</p>
+  <h2>Função da camada de aplicação</h2>
+  <table border="1">
+    <tr>
+      <th>Função</th>
+      <th>Explicação</th>
+    </tr>
+    <tr>
+      <td>Interface com o usuário</td>
+      <td>Permite que softwares se comuniquem com a rede (ex: WhatsApp, navegador, e-mail)</td>
+    </tr>
+    <tr>
+      <td>Suporte a serviços de rede</td>
+      <td>Fornece serviços como transferência de arquivos, envio de mensagens, etc</td>
+    </tr>
+    <tr>
+      <td>Identificação de protocolos</td>
+      <td>Usa protocolos específicos conforme a função do app</td>
+    </tr>
+    <tr>
+      <td>Gerenciamento de conexão</td>
+      <td>Alguns protocolos gerenciam sessões e conexões para garantir o funcionamento</td>
+    </tr>
+    <tr>
+      <td>Tratamento de erros</td>
+      <td>Pode lidar com erros de sintaxe, protocolo e resposta inválida da rede</td>
+    </tr>
+  </table>
+  <h2>erros na camada de aplicação</h2>
+  <p>A camada de aplicação tem liberdade para decidir o que fazer com erros — pode avisar, continuar, parar ou tentar de novo. Ela não corrige erros de rede, mas sabe como lidar com a resposta que veio falhada.</p>
+  <h2>Protocolos da camada de aplicação</h2>
+  <table border="1">
+    <tr>
+      <th>Protocolo</th>
+      <th>Função/Aplicação</th>
+    </tr>
+    <tr>
+      <td>HTTP/HTTPS</td>
+      <td>Navegação na web</td>
+    </tr>
+    <tr>
+      <td>SMTP</td>
+      <td>Envio de e-mails</td>
+    </tr>
+    <tr>
+      <td>POP3/IMAP</td>
+      <td>Recebimento de e-mails</td>
+    </tr>
+    <tr>
+      <td>FTP/SFTP</td>
+      <td>Transferência de arquivos</td>
+    </tr>
+    <tr>
+      <td>DNS</td>
+      <td>Tradução de nomes de domínio para IP</td>
+    </tr>
+    <tr>
+      <td>Telnet/SSH</td>
+      <td>Acesso remoto a servidores</td>
+    </tr>
+    <tr>
+      <td>MQTT/CoAP</td>
+      <td>Comunicação com dispositivos IoT</td>
+    </tr>
+    <tr>
+      <td>NTP</td>
+      <td>Sincronização de horário</td>
+    </tr>
+  </table>
+  <hr>
+  <a href="index.html"><img src="img/cachorro_chupetao.webp" alt=""></a>
+</body>
+</html>

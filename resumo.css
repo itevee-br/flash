@@ -1,0 +1,153 @@
+/* estilo_modelo_osi.css */
+
+/* Reset e configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo dos cabeçalhos das camadas */
+h1 {
+    color: #fff;
+    padding: 15px 20px;
+    margin: 30px 0 15px;
+    border-radius: 5px;
+    font-size: 1.8em;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cores específicas para cada camada */
+h1:nth-of-type(1) { background-color: #6c757d; } /* Física */
+h1:nth-of-type(2) { background-color: #28a745; } /* Enlace */
+h1:nth-of-type(3) { background-color: #007bff; } /* Rede */
+h1:nth-of-type(4) { background-color: #ffc107; color: #333; } /* Transporte */
+h1:nth-of-type(5) { background-color: #fd7e14; } /* Sessão */
+h1:nth-of-type(6) { background-color: #6f42c1; } /* Apresentação */
+h1:nth-of-type(7) { background-color: #dc3545; } /* Aplicação */
+
+h2 {
+    color: #2c3e50;
+    margin: 20px 0 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+}
+
+h3 {
+    color: #34495e;
+    margin: 15px 0 8px;
+}
+
+h4 {
+    color: #7f8c8d;
+    margin: 12px 0 6px;
+}
+
+/* Parágrafos e texto */
+p {
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Linhas divisórias */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin: 25px 0;
+}
+
+/* Destaques */
+b, strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+i, em {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+        padding: 12px 15px;
+    }
+    
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+}
+
+/* Efeitos de foco para estudo */
+h1, h2, h3 {
+    position: relative;
+}
+
+h1::after, h2::after, h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+h1:hover::after, h2:hover::after, h3:hover::after {
+    width: 100%;
+}
+
+/* Destaque para termos técnicos */
+p:has(b), p:has(strong) {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
