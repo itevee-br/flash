@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* Base Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Headings */
+h1 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+  margin-top: 40px;
+}
+
+h2 {
+  color: #2980b9;
+  margin-top: 30px;
+}
+
+h3 {
+  color: #16a085;
+  margin-top: 20px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Lists */
+ul, ol {
+  margin: 15px 0;
+  padding-left: 30px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Special Elements */
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  margin: 40px 0;
+}
+
+/* Highlight Sections */
+div.highlight {
+  background-color: #e8f4fc;
+  padding: 15px;
+  border-left: 4px solid #3498db;
+  margin: 20px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  th, td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+<body>
+        <h1>Modelo SNMP</h1>
+
+    <p>É a estrutura conceitual que define como o gerenciamento de redes deve ser organizado no padrão SNMP. Ele estabelece os componentes e suas interações.</p>
+
+    <h2>Componentes do Modelo SNMP</h2>
+    <table border="1">
+    <tr>
+        <th>Elemento</th>
+        <th>Função</th>
+    </tr>
+    <tr>
+        <td>Agente SNMP</td>
+        <td>Software em dispositivos de rede (roteadores, switches) que coleta dados.</td>
+    </tr>
+    <tr>
+        <td>Gerente SNMP</td>
+        <td>Sistema central que solicita e recebe informações dos agentes.</td>
+    </tr>
+    <tr>
+        <td>MIB (Management Information Base)</td>
+        <td>Banco de dados que define os objetos gerenciáveis.</td>
+    </tr>
+    <tr>
+        <td>Protocolo SNMP</td>
+        <td>O meio de comunicação entre gerente e agentes (parte do modelo).</td>
+    </tr>
+    </table>
+    <h1>Protocolo SNMP (Simple Network Management Protocol)</h1>
+    <p>O SNMP (Simple Network Management Protocol) é um protocolo padrão da camada de aplicação (TCP/IP) usado para monitorar e gerenciar dispositivos de rede, como roteadores, switches, servidores e impressoras.</p>
+    <h2>1. Componentes do Modelo SNMP</h2>
+    <table border="1">
+    <tr>
+        <th>Componente</th>
+        <th>Função</th>
+    </tr>
+    <tr>
+        <td>Agente SNMP</td>
+        <td>Software instalado no dispositivo gerenciado (ex.: roteador) que coleta e armazena dados.</td>
+    </tr>
+    <tr>
+        <td>Gerente SNMP</td>
+        <td>Sistema central que requisita informações aos agentes (ex.: servidor Zabbix, PRTG).</td>
+    </tr>
+    <tr>
+        <td>MIB (Management Information Base)</td>
+        <td>Banco de dados hierárquico que define os objetos gerenciáveis em um dispositivo.</td>
+    </tr>
+    <tr>
+        <td>Trap SNMP</td>
+        <td>Mensagem enviada pelo agente ao gerente para alertar sobre eventos críticos.</td>
+    </tr>
+    </table>
+
+    <h2>2. Versões do SNMP</h2>
+    <table border="1">
+    <tr>
+        <th>Versão</th>
+        <th>Descrição</th>
+        <th>Segurança</th>
+    </tr>
+    <tr>
+        <td>SNMPv1</td>
+        <td>Primeira versão (RFC 1157), usa comunidades (strings de texto) para autenticação.</td>
+        <td>Insegura (sem criptografia).</td>
+    </tr>
+    <tr>
+        <td>SNMPv2c</td>
+        <td>Melhorias em performance e novos tipos de mensagens (BulkGet), mas ainda usa comunidades.</td>
+        <td>Pouco segura.</td>
+    </tr>
+    <tr>
+        <td>SNMPv3</td>
+        <td>Versão mais atual (RFC 3414), com autenticação (usuário/senha) e criptografia (AES, DES).</td>
+        <td>Segura.</td>
+    </tr>
+    </table>
+
+    <h2>3. Tipos de Mensagens SNMP</h2>
+    <table border="1">
+    <tr>
+        <th>Mensagem</th>
+        <th>Descrição</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>Solicita um valor específico de um objeto (ex.: uso de CPU).</td>
+    </tr>
+    <tr>
+        <td>GETNEXT</td>
+        <td>Recupera o próximo valor na MIB (usado para navegar na árvore de objetos).</td>
+    </tr>
+    <tr>
+        <td>GETBULK (v2+)</td>
+        <td>Obtém vários valores de uma vez (melhor eficiência que múltiplos GETs).</td>
+    </tr>
+    <tr>
+        <td>SET</td>
+        <td>Altera um valor no dispositivo (ex.: reiniciar interface).</td>
+    </tr>
+    <tr>
+        <td>TRAP</td>
+        <td>Notificação enviada pelo agente ao gerente (ex.: falha em um link).</td>
+    </tr>
+    <tr>
+        <td>INFORM (v2+)</td>
+        <td>Similar ao TRAP, mas com confirmação de recebimento.</td>
+    </tr>
+    </table>
+    <img src="img/trap.gif" alt="trap">
+
+    <h2>4. Estrutura da MIB (Management Information Base)</h2>
+    <p>A MIB é uma estrutura hierárquica que organiza os objetos gerenciáveis em OIDs (Object Identifiers).</p>
+
+    <p>Exemplo de OID:</p>
+    <p>1.3.6.1.2.1.1.1 → sysDescr (Descrição do dispositivo).</p>
+    <p>1.3.6.1.2.1.1.5 → sysName (Nome do dispositivo).</p>
+
+    <p>Árvore MIB Padrão:</p>
+    <pre>iso (1) → org (3) → dod (6) → internet (1) → mgmt (2) → mib-2 (1) → system (1) → sysDescr (1)</pre>
+
+    <h2>5. Aplicações do SNMP</h2>
+    <p>✔ Monitoramento de Rede (ex.: tráfego, status de interfaces).</p>
+    <p>✔ Detecção de Falhas (ex.: traps de queda de link).</p>
+    <p>✔ Gerenciamento Remoto (ex.: alterar configurações via SET).</p>
+
+    <hr>
+
+    <h1>RMON (Remote Network Monitoring) - Conceitos Fundamentais</h1>
+
+    <h1>RMON (É O RAMON)</h1>
+    <h2>o ramom ele estuda toda a rede. sem precisa dos roteador ficar mandando as informação de como tão toda hr no trafico.
+        ai dps o smntp so passa no ramom e pega todas as coisas que aconteceram de uma vez assim diminuindo o trafego da rede. o ramom e legal.</h2>
+    <p>RMON é um <strong>padrão de monitoramento remoto</strong> (RFC 2819) que permite coletar estatísticas de rede <strong>mesmo quando o gerente SNMP está offline</strong>. Diferente do SNMP tradicional (que foca em dispositivos individuais), o RMON monitora <strong>segmentos de rede inteiros</strong>.</p>
+
+    <h2>2. Principais Características</h2>
+    <ul>
+        <li><strong>Monitoramento proativo</strong> (coleta contínua de dados)</li>
+        <li><strong>Reduz tráfego SNMP</strong> (armazena dados localmente)</li>
+        <li><strong>9 grupos de monitoramento</strong> (RMON1) + <strong>10 grupos adicionais</strong> (RMON2)</li>
+        <li><strong>Opera na Camada 2</strong> (RMON1) e <strong>Camadas 3-7</strong> (RMON2)</li>
+    </ul>
+
+    <h2>3. Grupos RMON (RMON1 - Camada 2)</h2>
+    <table>
+        <tr>
+            <th>Grupo</th>
+            <th>Função</th>
+            <th>Exemplo de Uso</th>
+        </tr>
+        <tr>
+            <td><strong>Statistics</strong></td>
+            <td>Mede tráfego por interface (pacotes, erros, octetros)</td>
+            <td>Identificar congestionamento</td>
+        </tr>
+        <tr>
+            <td><strong>History</strong></td>
+            <td>Armazena dados estatísticos periodicamente</td>
+            <td>Análise de tendências</td>
+        </tr>
+        <tr>
+            <td><strong>Alarm</strong></td>
+            <td>Gera alertas quando métricas ultrapassam limites</td>
+            <td>Notificar sobre picos de tráfego</td>
+        </tr>
+        <tr>
+            <td><strong>Hosts</strong></td>
+            <td>Monitora hosts individuais (endereços MAC)</td>
+            <td>Detectar dispositivos não autorizados</td>
+        </tr>
+        <tr>
+            <td><strong>Matrix</strong></td>
+            <td>Mapeia conversações entre hosts (origem/destino)</td>
+            <td>Identificar tráfego suspeito</td>
+        </tr>
+    </table>
+
+    <h2>4. RMON2 (Monitoramento de Camadas 3-7)</h2>
+    <p>Estende o RMON1 para monitorar:</p>
+    <ul>
+        <li><strong>Tráfego por protocolo</strong> (IP, TCP, HTTP)</li>
+        <li><strong>Desempenho de aplicações</strong> (latência, taxa de transferência)</li>
+        <li><strong>Análise de padrões de tráfego</strong></li>
+    </ul>
+
+    <div class="highlight">
+        <p><strong>Grupo chave:</strong></p>
+        <ul>
+            <li><strong>Protocol Directory</strong> → Lista protocolos monitorados</li>
+            <li><strong>User History</strong> → Dados personalizados por aplicação</li>
+        </ul>
+    </div>
+
+    <h2>5. Como o RMON Funciona?</h2>
+    <ol>
+        <li><strong>Agente RMON</strong> (embutido em switches/roteadores ou sondas dedicadas) coleta dados.</li>
+        <li><strong>Armazena estatísticas localmente</strong> (evita sobrecarga no gerente).</li>
+        <li><strong>Gerente SNMP consulta periodicamente</strong> o agente RMON.</li>
+    </ol>
+
+    <pre>
+    [Dispositivo de Rede] ← (Dados em tempo real)
+        ↓
+    [Agente RMON] → Armazena históricos
+        ↓ 
+    [Gerente SNMP] ← Consulta sob demanda
+    </pre>
+
+    <h2>6. Vantagens do RMON</h2>
+    <ul>
+        <li><strong>Redução de tráfego na rede</strong> (dados são agregados localmente)</li>
+        <li><strong>Detecção proativa de problemas</strong> (antes que afetem os usuários)</li>
+        <li><strong>Análise histórica</strong> (identifica padrões ao longo do tempo)</li>
+    </ul>
+
+    <h2>7. RMON vs. SNMP Tradicional</h2>
+    <table>
+        <tr>
+            <th>Critério</th>
+            <th>SNMP</th>
+            <th>RMON</th>
+        </tr>
+        <tr>
+            <td><strong>Escopo</strong></td>
+            <td>Dispositivos individuais</td>
+            <td>Segmentos de rede inteiros</td>
+        </tr>
+        <tr>
+            <td><strong>Armazenamento</strong></td>
+            <td>Não armazena dados</td>
+            <td>Mantém histórico local</td>
+        </tr>
+        <tr>
+            <td><strong>Overhead</strong></td>
+            <td>Alto (consultas constantes)</td>
+            <td>Baixo (agregação local)</td>
+        </tr>
+        <tr>
+            <td><strong>Camadas</strong></td>
+            <td>Todos os níveis</td>
+            <td>RMON1: Camada 2 / RMON2: 3-7</td>
+        </tr>
+    </table>
+
+    <h2>8. Aplicações Práticas</h2>
+    <ul>
+        <li><strong>Solução de problemas</strong>: Identificar qual host está consumindo mais banda.</li>
+        <li><strong>Segurança</strong>: Detectar varreduras de portas (monitorando tentativas de conexão).</li>
+        <li><strong>Planejamento</strong>: Analisar crescimento do tráfego para upgrades.</li>
+    </ul>
+
+    <hr>
+
+    <h1>Service Level Management (SLM) Explicado de Forma Simples</h1>
+    <h2>basicamente acordos. contrados. sla.</h2>
+
+    <p>Service Level Management (SLM) é o sistema que garante que serviços de TI entreguem o que foi prometido. Funciona assim:</p>
+
+    <h2>1. O Básico do SLM</h2>
+    <ul>
+    <li>É como um contrato invisível entre você e seu provedor de serviços</li>
+    <li>Define regras claras sobre o que você pode esperar</li>
+    <li>Usa números concretos para medir a qualidade</li>
+    </ul>
+
+    <h2>2. Como Funciona na Prática</h2>
+    <h3>Passo 1: Criação do SLA (Acordo de Nível de Serviço)</h3>
+    <ul>
+    <li>Exemplo: "Internet disponível 99,9% do tempo"</li>
+    <li>"Problemas resolvidos em até 4 horas"</li>
+    </ul>
+
+    <h3>Passo 2: Monitoramento Constante</h3>
+    <p>Ferramentas verificam automaticamente:</p>
+    <ul>
+    <li>Tempo de atividade (uptime)</li>
+    <li>Velocidade da conexão</li>
+    <li>Tempo de resposta a incidentes</li>
+    </ul>
+
+    <h3>Passo 3: Relatórios Mensais</h3>
+    <p>Mostram se as metas foram atingidas:</p>
+    <ul>
+    <li>"Disponibilidade: 99,8% (meta 99,9%)"</li>
+    <li>"Tempo médio de reparo: 3h50m"</li>
+    </ul>
+
+    <h2>3. Termos Importantes</h2>
+    <table border="1">
+    <tr>
+        <th>Termo</th>
+        <th>Significado</th>
+    </tr>
+    <tr>
+        <td>SLA</td>
+        <td>Contrato com metas mensuráveis</td>
+    </tr>
+    <tr>
+        <td>KPI</td>
+        <td>Indicadores de desempenho</td>
+    </tr>
+    <tr>
+        <td>SLR</td>
+        <td>Relatórios de desempenho</td>
+    </tr>
+    </table>
+
+    <h2>4. Exemplo Prático</h2>
+    <p><strong>SLA de Internet:</strong></p>
+    <ul>
+    <li>Disponibilidade: 99.9%</li>
+    <li>Velocidade mínima: 80% da contratada</li>
+    <li>Tempo de resposta: 2 horas para críticos</li>
+    </ul>
+
+    <h2>5. Benefícios</h2>
+    <ul>
+    <li>Clareza nas expectativas</li>
+    <li>Melhoria contínua dos serviços</li>
+    <li>Compensações quando metas não são atingidas</li>
+    </ul>
+
+    <p>SLM transforma promessas em números e resultados concretos!</p>
+
+    <hr>
+
+    <h1>ZAbbix monitora ate o to com sono</h1>
+    <p>codigo aberto tem puglin tem tudo</p>
+    <p>✔ Monitoramento em Tempo Real (servidores, redes, aplicações) <br>
+    ✔ Alertas Automáticos (e-mail, SMS, Slack) <br>
+    ✔ Descoberta Automática de dispositivos <br>
+    ✔ Armazenamento de Dados (SQL, NoSQL) <br>
+    ✔ Suporte a SNMP, IPMI, JMX</p>
+
+    <h1>Grafana gera graficos</h1>
+    <p>codigo aberto, fica melhor de entender as coisa do zabbix</p>
+    <p>✔ Visualização Personalizável (gráficos, tabelas, mapas) <br>
+✔ Integração com +100 Fontes de Dados (Zabbix, Prometheus, MySQL) <br>
+✔ Dashboards Dinâmicos (arrastar e soltar) <br>
+✔ Alertas Baseados em Gráficos</p>
+<a href="index.html"><img src="img/cachorro_chupetao.webp" alt=""></a>
+</body>
+</html>

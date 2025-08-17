@@ -36,6 +36,7 @@ h1:nth-of-type(4) { background-color: #ffc107; color: #333; } /* Transporte */
 h1:nth-of-type(5) { background-color: #fd7e14; } /* Sessão */
 h1:nth-of-type(6) { background-color: #6f42c1; } /* Apresentação */
 h1:nth-of-type(7) { background-color: #dc3545; } /* Aplicação */
+h1:nth-of-type(8) { background-color: #2e1417; } /* Aplicação */
 
 h2 {
     color: #2c3e50;

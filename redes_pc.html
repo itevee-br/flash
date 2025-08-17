@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>redes de computadores</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        p {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Estilos para Tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            font-size: 0.95em;
+        }
+
+        table th {
+            background-color: #3498db;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: bold;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        table tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        table tr:last-of-type {
+            border-bottom: 2px solid #3498db;
+        }
+
+        table tr:hover {
+            background-color: #e1f5fe;
+        }
+
+        /* Destaques para portas e camadas */
+        td:first-child {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        td:last-child {
+            font-style: italic;
+            color: #27ae60;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Classes de rede - destaque especial */
+        .classes-rede tr td:first-child {
+            font-weight: bold;
+            color: #9b59b6;
+        }
+
+        /* Destaque para protocolos importantes */
+        .protocolo-importante {
+            background-color: #fffde7 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Endereço IP</h1>
+    <p>192.168.1.0 terminando em 0 identifica a rede.</p>
+    <p>192.168.1.1 primeiro dispositivo da rede.</p>
+    <p>192.168.1.255 Endereço BROADCAST da rede.</p>
+    <p>BROADCAST -> grita para todos da rede.</p>
+    <p>0.0.0.0 -> rota default, se não encontrar a rota vai para a padrão configurada</p>
+    <p>ip route 0.0.0.0 0.0.0.0 23.243.214.1 -> configuração de uma rota default</p>
+    <p>existe rotamento estatico / dinamico. O PROPIO NOME JA EXPLICA</p>
+    <h2>Classes de rede (obsoleto)</h2>
+    <table>
+        <tr>
+            <td>Classe</td>
+            <td>Faixa de IPs</td>
+            <td>Máscara Padrão</td>
+            <td>Hosts por Rede</td>
+            <td>Uso Principal</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>1.0.0.0 - 126.255.255.255</td>
+            <td>255.0.0.0</td>
+            <td>~16 milhões</td>
+            <td>Grandes corporações</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>128.0.0.0 - 191.255.255.255</td>
+            <td>255.255.0.0</td>
+            <td>~65 mil</td>
+            <td>Redes médias</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>192.0.0.0 - 223.255.255.255</td>
+            <td>255.255.255.0</td>
+            <td>254</td>
+            <td>Pequenas redes / LANs</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>224.0.0.0 - 239.255.255.255</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Multicast (transmissão em grupo)</td>
+        </tr>
+        <tr>
+            <td>E</td>
+            <td>240.0.0.0 - 255.255.255.255</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Reservado para testes e pesquisa</td>
+        </tr>
+    </table>
+    <h2>Tabela de roteamento</h2>
+    <p>cada roteador tem, e depende do protocolo</p>
+    <img src="img/example-of-a-routing-table-l.jpg" alt="">
+    <h2>RIP - protocolo de roteamento interno </h2>
+    <p>usa o numero de saltos como metrica, ou seja para chegar a rede X devo pular por Y roteadores. Sua lista por padrão é atualizada a cada 30 segundos</p>
+    <p>o RIP v1 usa classes, Porém isso ja esta em desuso então tem o RIP v2 que é melhor e não usa classes.</p>
+    <img src="img/rip.gif" alt="rip">
+    <h2>OSPF - Open Short Pach Firt</h2>
+    <p>Cada roteador possui um mapa de toda a rede, que é atualizado apenas quando ocorre uma mudança na rede.</p>
+    <p>Nisso cada roteador CALCULA qual é o menor caminho possivel usando um valor de custo. (base/largura de banda)</p>
+    <p>O adm pode alterar os valores usados no calculo se quiser. tambem suporta </p>
+    <p>Pode ser dividido em hierarquia de AREAS, para o mapa ser menor. todas as areas devem ser conectadas a area 0 backbone.</p>
+    <p>Mais rapida que o Rip porem os roteadores precisam CALCULAR então precisam ser mais potentes.</p>
+    <p>Existe um roteador desiguinado DR e um roteador desiguinado de Backup BDR, basicamente funcionam como um switch na topologia estrela.</p>
+    <h2>BGP - protocolo regras :( [[INTERNET]]</h2>
+    <p>Ele é um protocolo muito mais lento porem com politicas de atributos e regras.</p>
+    <p>Como o RIP ele não precisa calcular, porem ele não usa o "menor caminho" como metrica</p>
+    <p>Ele segue regras e tem ate um historico sobre por onde a informação passou (AS_PATH)</p>
+    <h1>LISTA SUPREMA DE SUBTOPICOS</h1>
+    <table>
+        <tr>
+            <th>Porta</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Camada OSI</th>
+        </tr>
+        <tr>
+            <td>80, 443</td>
+            <td>HTTP/HTTPS</td>
+            <td>Protocolo para transferência de hipertexto (páginas web). HTTPS é a versão segura com criptografia.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>20, 21</td>
+            <td>FTP</td>
+            <td>Protocolo para transferência de arquivos entre cliente e servidor (não criptografado).</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>SFTP</td>
+            <td>Versão segura do FTP que utiliza SSH para criptografar a transferência de arquivos.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>25, 587</td>
+            <td>SMTP</td>
+            <td>Protocolo para envio de e-mails entre servidores.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>110, 995</td>
+            <td>POP3</td>
+            <td>Protocolo para download de e-mails do servidor para o cliente local (normalmente apaga do servidor após download).</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>143, 993</td>
+            <td>IMAP</td>
+            <td>Protocolo para gerenciamento de e-mails diretamente no servidor, mantendo sincronização entre dispositivos.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>53</td>
+            <td>DNS</td>
+            <td>Converte nomes de domínio (ex: google.com) em endereços IP.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>389, 636</td>
+            <td>LDAP</td>
+            <td>Protocolo para acesso e gerenciamento de serviços de diretório (como Active Directory).</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>2049</td>
+            <td>NFS</td>
+            <td>Permite compartilhar arquivos entre sistemas em uma rede como se fossem locais.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>Telnet</td>
+            <td>Protocolo antigo para acesso remoto a servidores (não criptografado, substituído pelo SSH).</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>SSH</td>
+            <td>Protocolo criptografado para acesso remoto seguro a servidores e transferência de arquivos.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>161, 162</td>
+            <td>SNMP</td>
+            <td>Usado para monitorar e gerenciar dispositivos de rede (roteadores, switches).</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>STP</td>
+            <td>Evita loops em redes com switches redundantes (IEEE 802.1D).</td>
+            <td>Enlace (2)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>RSTP</td>
+            <td>Versão melhorada do STP (IEEE 802.1w) com convergência mais rápida.</td>
+            <td>Enlace (2)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>MSTP</td>
+            <td>Extensão do RSTP que agrupa VLANs em árvores lógicas (IEEE 802.1s).</td>
+            <td>Enlace (2)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>HSRP</td>
+            <td>Protocolo da Cisco para redundância de gateway padrão (ativo/standby).</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>VRRP</td>
+            <td>Padrão aberto (IEEE 802.1q) para redundância de gateway, similar ao HSRP.</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>500, 4500</td>
+            <td>IPSec</td>
+            <td>Conjunto de protocolos para criptografia de tráfego IP (VPNs).</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>443, 465, 993</td>
+            <td>SSL/TLS</td>
+            <td>Criptografia para comunicações seguras (ex: HTTPS, FTPS).</td>
+            <td>Sessão (5) e Apresentação (6)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>TCP</td>
+            <td>Orientado a conexão, garante entrega confiável de dados (checksum, ACK).</td>
+            <td>Transporte (4)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>UDP</td>
+            <td>Sem conexão, mais rápido que TCP mas não confiável (usado em DNS, VoIP).</td>
+            <td>Transporte (4)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>IP</td>
+            <td>Roteamento de pacotes na rede (IPv4/IPv6).</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>ICMP</td>
+            <td>Mensagens de controle (ex: ping, traceroute).</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>ARP</td>
+            <td>Mapeia endereços IP para MAC (camada 2).</td>
+            <td>Enlace (2)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>RARP</td>
+            <td>Oposto do ARP: converte MAC para IP (obsoleto, substituído por DHCP).</td>
+            <td>Enlace (2)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>GLBP</td>
+            <td>Protocolo Cisco para balanceamento de carga entre gateways.</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>CARP</td>
+            <td>Similar ao VRRP, usado em sistemas open-source (ex: pfSense).</td>
+            <td>Rede (3)</td>
+        </tr>
+        <tr>
+            <td>67, 68</td>
+            <td>DHCP</td>
+            <td>Atribui IPs dinâmicos e configurações de rede a dispositivos.</td>
+            <td>Aplicação (7)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>IEEE 802.11b/g/n</td>
+            <td>Padrões sem fio (2.4 GHz e 5 GHz) para redes locais.</td>
+            <td>Física (1) e Enlace (2)</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>IEEE 802.11ac/ax</td>
+            <td>Evolução do Wi-Fi para maior velocidade (MU-MIMO, OFDMA).</td>
+            <td>Física (1) e Enlace (2)</td>
+        </tr>
+    </table>
+    <p>revisando
+        Internet (Pública)  
+   ↳ Aberta a todos (ex.: sites globais).  
+
+Intranet (Privada)  
+   ↳ Restrita a colaboradores (ex.: sistema interno).  
+
+Extranet (Híbrida)  
+   ↳ Parceiros acessam com permissão (ex.: portal de clientes).  
+    </p>
+    <a href="index.html"><img src="img/cachorro_chupetao.webp" alt=""></a>
+</body>
+</html>
